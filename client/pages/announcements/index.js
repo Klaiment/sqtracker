@@ -26,9 +26,7 @@ const Announcements = ({ announcements, pinnedAnnouncements, userRole }) => {
         <Text as="h1">{getLocaleString("navAnnouncements")}</Text>
         {userRole === "admin" && (
           <Link href="/announcements/new" passHref>
-            <a>
-              <Button>{getLocaleString("reqCreateNew")}</Button>
-            </a>
+            <Button>{getLocaleString("reqCreateNew")}</Button>
           </Link>
         )}
       </Box>

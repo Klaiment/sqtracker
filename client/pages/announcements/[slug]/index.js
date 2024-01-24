@@ -193,11 +193,9 @@ const Announcement = ({ announcement, token, userRole }) => {
                 : `${getLocaleString("annPin")}`}
             </Button>
             <Link href={`${router.asPath}/edit`} passHref>
-              <a>
                 <Button variant="secondary" mr={3}>
                   {getLocaleString("torrEdit")}
                 </Button>
-              </a>
             </Link>
             <Button
               onClick={() => setShowDeleteModal(true)}
@@ -217,7 +215,7 @@ const Announcement = ({ announcement, token, userRole }) => {
           {getLocaleString("reqBy")}{" "}
           {announcement.createdBy?.username ? (
             <Link href={`/user/${announcement.createdBy.username}`} passHref>
-              <a>{announcement.createdBy.username}</a>
+              {announcement.createdBy.username}
             </Link>
           ) : (
             "deleted user"

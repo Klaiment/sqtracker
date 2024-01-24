@@ -1,4 +1,4 @@
-FROM node:16-alpine AS builder
+FROM node:18.18.0-alpine AS builder
 ARG SENTRY_AUTH_TOKEN
 ENV NODE_ENV=production
 ENV SENTRY_ORG=tdjsnelling
@@ -9,8 +9,9 @@ COPY . .
 RUN yarn install
 RUN echo "{}" > /config.js
 RUN ./node_modules/.bin/next build
+#RUN npm run build
 
-FROM node:16-alpine
+FROM node:18.18.0-alpine
 ENV NODE_ENV=production
 ENV SENTRY_DSN="https://22bc43683da04040aa90e7683ffe022a@o140996.ingest.sentry.io/4504646040616960"
 LABEL org.opencontainers.image.source=https://github.com/tdjsnelling/sqtracker
@@ -22,3 +23,4 @@ COPY --from=builder /sqtracker/next.config.js ./next.config.js
 COPY --from=builder /sqtracker/package.json ./package.json
 EXPOSE 3000
 CMD ["node_modules/.bin/next", "start", "-p", "3000"]
+#RUN npm run start

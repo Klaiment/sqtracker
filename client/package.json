@@ -1,6 +1,6 @@
 {
-  "name": "@sqtracker/client",
-  "version": "1.5.0",
+  "name": "@klaiment/client",
+  "version": "1.6.10",
   "private": true,
   "license": "GPL-3.0-only",
   "scripts": {
@@ -16,26 +16,29 @@
     "@styled-system/css": "^5.1.5",
     "copy-to-clipboard": "^3.3.1",
     "dotenv": "^10.0.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.1",
-    "next": "12.2.5",
+    "next": "^14.1.0",
     "pluralize": "^8.0.0",
     "polished": "^4.1.3",
+    "prettier": "^3.2.4",
     "pretty-bytes": "^5.6.0",
     "qs": "^6.11.0",
-    "react": "17.0.2",
+    "react": "^18.2.0",
     "react-cookie": "^4.1.1",
-    "react-dom": "17.0.2",
+    "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
     "react-markdown": "^7.1.2",
     "remark-gfm": "^3.0.1",
     "slugify": "^1.6.5",
     "styled-components": "^5.3.3",
-    "styled-system": "^5.1.5"
+    "styled-system": "^5.1.5",
+    "yarn": "^1.22.21"
   },
   "devDependencies": {
-    "eslint": "7",
-    "eslint-config-next": "12.0.4"
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^14.1.0",
+    "eslint-plugin-prettier": "^5.1.3"
   }
 }

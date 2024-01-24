@@ -25,7 +25,7 @@ services:
     volumes:
       - ./data:/data/db
   api:
-    container_name: sq_api
+    container_name: klaiment_api
     build:
       context: ./api
       dockerfile: Dockerfile
@@ -39,7 +39,7 @@ services:
     depends_on:
       - database
   client:
-    container_name: sq_client
+    container_name: klaiment
     build:
       context: ./client
       dockerfile: Dockerfile

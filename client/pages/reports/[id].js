@@ -91,7 +91,7 @@ const Report = ({ report, token, userRole }) => {
         {moment(report.created).format(`${getLocaleString("indexTime")}`)}{" "}
         {getLocaleString("reqBy")}{" "}
         <Link href={`/user/${report.reportedBy.username}`} passHref>
-          <a>{report.reportedBy.username}</a>
+          {report.reportedBy.username}
         </Link>
       </Text>
       <Info
@@ -99,7 +99,7 @@ const Report = ({ report, token, userRole }) => {
         items={{
           [getLocaleString("uploadName")]: (
             <Link href={`/torrent/${report.torrent.infoHash}`} passHref>
-              <a>{report.torrent.name}</a>
+              {report.torrent.name}
             </Link>
           ),
           [getLocaleString("uploadDescription")]: report.torrent.description,

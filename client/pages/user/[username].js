@@ -123,9 +123,7 @@ const User = ({ token, user, userRole }) => {
         </Box>
         {cookies.username === user.username && (
           <Link href="/account">
-            <a>
               <Button>{getLocaleString("accMyAccount")}</Button>
-            </a>
           </Link>
         )}
         {userRole === "admin" && cookies.username !== user.username && (
@@ -167,7 +165,7 @@ const User = ({ token, user, userRole }) => {
               <li>
                 {getLocaleString("userInvitedBy")}:{" "}
                 <Link href={`/user/${user.invitedBy.username}`}>
-                  <a>{user.invitedBy.username}</a>
+                  {user.invitedBy.username}
                 </Link>
               </li>
             )}

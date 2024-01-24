@@ -27,9 +27,7 @@ const Requests = ({ requests }) => {
       >
         <Text as="h1">{getLocaleString("navRequests")}</Text>
         <Link href="/requests/new" passHref>
-          <a>
             <Button>{getLocaleString("reqCreateNew")}</Button>
-          </a>
         </Link>
       </Box>
       <List

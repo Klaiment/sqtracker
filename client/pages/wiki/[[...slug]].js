@@ -171,7 +171,7 @@ const Wiki = ({ page, allPages, token, userRole, slug }) => {
               {getLocaleString("reqBy")}{" "}
               {page.createdBy?.username ? (
                 <Link href={`/user/${page.createdBy.username}`} passHref>
-                  <a>{page.createdBy.username}</a>
+                  {page.createdBy.username}
                 </Link>
               ) : (
                 "deleted user"
@@ -191,10 +191,10 @@ const Wiki = ({ page, allPages, token, userRole, slug }) => {
                   components={{
                     a({ href, ...props }) {
                       return href.startsWith("http") ? (
-                        <a href={href} target="_blank" {...props} />
+                        <Link href={href} target="_blank" {...props} />
                       ) : (
                         <Link href={href} passHref>
-                          <a {...props} />
+                          <Link {...props} />
                         </Link>
                       );
                     },

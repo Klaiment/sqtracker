@@ -25,14 +25,14 @@ services:
       - ./traefik.yml:/config/traefik.yml
   database:
     container_name: sq_mongodb
-    image: mongo:6.0
+    image: mongo:5.2
     ports:
       - "127.0.0.1:27017:27017"
     volumes:
       - ./data:/data/db
   api:
-    container_name: sq_api
-    image: ghcr.io/tdjsnelling/sqtracker-api:latest
+    container_name: klaiment_api
+    image: klaiment_api:latest
     ports:
       - "127.0.0.1:3001:3001"
     volumes:
@@ -42,8 +42,8 @@ services:
     depends_on:
       - database
   client:
-    container_name: sq_client
-    image: ghcr.io/tdjsnelling/sqtracker-client:latest
+    container_name: klaiment
+    image: klaiment:latest
     ports:
       - "127.0.0.1:3000:3000"
     volumes:

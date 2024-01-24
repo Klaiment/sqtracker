@@ -31,13 +31,13 @@ const PublicLanding = ({ name, allowRegister }) => {
       <Box display="flex" mt={4}>
         <Box>
           <Link href="/login">
-            <a>{getLocaleString("logIn")}</a>
+            {getLocaleString("logIn")}
           </Link>
         </Box>
         {allowRegister && (
           <Box ml={4}>
             <Link href="/register">
-              <a>{getLocaleString("register")}</a>
+              {getLocaleString("register")}
             </Link>
           </Box>
         )}
@@ -129,7 +129,7 @@ const Index = ({
                     href={`/user/${latestAnnouncement.createdBy.username}`}
                     passHref
                   >
-                    <a>{latestAnnouncement.createdBy.username}</a>
+                    {latestAnnouncement.createdBy.username}
                   </Link>
                 ) : (
                   "deleted user"

@@ -297,13 +297,13 @@ const Navigation = ({ isMobile, menuIsOpen, setMenuIsOpen }) => {
       >
         <Text color="grey" fontSize={0}>
           {getLocaleString("poweredBy")}{" "}
-          <a
+          <Link
             href="https://github.com/tdjsnelling/sqtracker"
             target="_blank"
             rel="noreferrer"
           >
             ■ sqtracker
-          </a>{" "}
+          </Link>{" "}
           v{SQ_VERSION}
         </Text>
         <LocaleSelector

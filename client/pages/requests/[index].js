@@ -240,7 +240,7 @@ const Request = ({ request, token, user }) => {
           {getLocaleString("reqBy")}{" "}
           {request.createdBy?.username ? (
             <Link href={`/user/${request.createdBy.username}`} passHref>
-              <a>{request.createdBy.username}</a>
+              {request.createdBy.username}
             </Link>
           ) : (
             "deleted user"

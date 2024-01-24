@@ -64,7 +64,7 @@ const VerifyEmail = () => {
           <Text>
             {getLocaleString("veEmailAddressVerifiedSuccess")}{" "}
             <Link href="/login" passHref>
-              <a>{getLocaleString("logIn")}</a>
+              {getLocaleString("logIn")}
             </Link>
           </Text>
         </>

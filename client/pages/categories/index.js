@@ -53,7 +53,7 @@ const Categories = ({ tags }) => {
                   href={`/categories/${slugify(category, { lower: true })}`}
                   passHref
                 >
-                  <a>{category}</a>
+                  {category}
                 </Link>
               </CategoryItem>
             ))}
