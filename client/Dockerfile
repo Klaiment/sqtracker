@@ -5,8 +5,10 @@ ENV SENTRY_ORG=tdjsnelling
 ENV SENTRY_PROJECT=sqtracker-frontend
 ENV SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
 WORKDIR /sqtracker
-COPY . .
+COPY package.json .
+COPY yarn.lock .
 RUN yarn install
+COPY . .
 RUN echo "{}" > /config.js
 RUN ./node_modules/.bin/next build
 #RUN npm run build
@@ -22,5 +24,6 @@ COPY --from=builder /sqtracker/.next ./.next
 COPY --from=builder /sqtracker/next.config.js ./next.config.js
 COPY --from=builder /sqtracker/package.json ./package.json
 EXPOSE 3000
-CMD ["node_modules/.bin/next", "start", "-p", "3000"]
+CMD ["npm", "run", "start"]
+#CMD ["node_modules/.bin/next", "start", "-p", "3000"]
 #RUN npm run start
