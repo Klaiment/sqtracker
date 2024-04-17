@@ -43,7 +43,9 @@ const insert = (children = [], [head, ...tail], size) => {
   else child.size = size;
   return children;
 };
-const TMDB_API_KEY = config.envs.TMDB_API_KEY;
+const {
+  publicRuntimeConfig: { TMDB_API_KEY },
+} = getConfig();
 export const Info = ({ title, items }) => (
   <Infobox mb={5}>
     {title && (
@@ -698,7 +700,6 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
       { torrent.tmdbid && (
 
           useEffect(() => {
-            console.log(TMDB_API_KEY)
             const language = cookies.locale === "fr" ? "fr-FR" : "en-US";
             let type = torrent.type === "tv" ? "tv" : "movie";
 
@@ -731,7 +732,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
                 method: 'GET',
                 headers: {
                   accept: 'application/json',
-                  Authorization: `Bearer ${config.envs.TMDB_API_KEY}`
+                  Authorization: `Bearer ${TMDB_API_KEY}`
                 }
               };
 
