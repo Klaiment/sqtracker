@@ -245,7 +245,7 @@ const Wiki = ({ page, allPages, token, userRole, slug }) => {
             </form>
           )}
         </>
-      ) : allPages.length > 0 ? (
+      ) : allPages && allPages.length > 0 ? (
           <>
             {allPages.map((p) => (
                 <Link key={`page-${p.slug}`} href={`/wiki${p.slug}`} passHref>
