@@ -106,6 +106,7 @@ export const TorrentFields = ({
                     name="tmdbid"
                     label={getLocaleString("tmdbid")}
                     mb={4}
+                    defaultValue={values?.tmdbid}
                 />
             )}
 
