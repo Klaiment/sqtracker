@@ -33,6 +33,7 @@ import MarkdownInput from "../../components/MarkdownInput";
 import LocaleContext from "../../utils/LocaleContext";
 import fetch from "node-fetch";
 import config from "../../../config";
+import {getCookieParser} from "next/dist/server/api-utils";
 // from https://stackoverflow.com/a/44681235/7739519
 // API TMDB : config.envs.TMDB_API_KEY
 const insert = (children = [], [head, ...tail], size) => {
@@ -696,7 +697,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
 
       { torrent.tmdbid && (
           useEffect(() => {
-            const language = config.envs.SQ_SITE_DEFAULT_LOCALE === "fr" ? "fr-FR" : "en-US";
+            const language = cookies.locale === "fr" ? "fr-FR" : "en-US";
             let type = torrent.type === "tv" ? "tv" : "movie";
 
             const fetchMovieVideos = async () => {
