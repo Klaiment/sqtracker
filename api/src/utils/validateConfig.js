@@ -57,6 +57,7 @@ const configSchema = yup
         SQ_API_URL: yup.string().matches(httpRegex).required(),
         SQ_MONGO_URL: yup.string().matches(mongoRegex).required(),
         SQ_DISABLE_EMAIL: yup.boolean(),
+        TMDB_API_KEY: yup.string(),
         SQ_MAIL_FROM_ADDRESS: yup
           .string()
           .email()

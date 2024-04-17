@@ -1,4 +1,4 @@
-import React, { useState, useContext, useRef } from "react";
+import React, {useState, useContext, useRef, useEffect} from "react";
 import getConfig from "next/config";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -31,8 +31,10 @@ import LoadingContext from "../../utils/LoadingContext";
 import { TorrentFields } from "../upload";
 import MarkdownInput from "../../components/MarkdownInput";
 import LocaleContext from "../../utils/LocaleContext";
-
+import fetch from "node-fetch";
+import config from "../../../config";
 // from https://stackoverflow.com/a/44681235/7739519
+// API TMDB : config.envs.TMDB_API_KEY
 const insert = (children = [], [head, ...tail], size) => {
   let child = children.find((child) => child.name === head);
   if (!child) children.push((child = { name: head, children: [] }));
@@ -137,6 +139,8 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
   const [showReportModal, setShowReportModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
+  const [data, setData] = useState(null);
+  const [video, setVideo] = useState(null);
   const [userVote, setUserVote] = useState(
     (torrent.userHasUpvoted && "up") ||
       (torrent.userHasDownvoted && "down") ||
@@ -188,6 +192,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           },
           body: JSON.stringify({
             name: form.get("name"),
+            tmdbid: form.get("tmdbid"),
             description: form.get("description"),
             type: form.get("category"),
             source: form.get("source"),
@@ -688,12 +693,100 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           />
         </Infobox>
       )}
+
+      {
+        useEffect(() => {
+          const language = config.envs.SQ_SITE_DEFAULT_LOCALE === "fr" ? "fr-FR" : "en-US";
+          let type = torrent.type === "tv" ? "tv" : "movie";
+
+          const fetchMovieVideos = async () => {
+            const url = `https://api.themoviedb.org/3/${type}/${torrent.tmdbid}/videos`;
+            const options = {
+              method: 'GET',
+              headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${config.envs.TMDB_API_KEY}`
+              }
+            };
+
+            try {
+              const response = await fetch(url, options);
+              if (!response.ok) {
+                throw new Error('Failed to fetch movie videos');
+              }
+              const responseData = await response.json();
+              console.log(responseData);
+              setVideo(responseData);
+            } catch (error) {
+              console.error('Error fetching movie videos:', error);
+              setError('Failed to fetch movie videos');
+            }
+          };
+
+          const fetchMovieGenres = async () => {
+            const url = `https://api.themoviedb.org/3/${type}/${torrent.tmdbid}?language=${language}`;
+            const options = {
+              method: 'GET',
+              headers: {
+                accept: 'application/json',
+                Authorization: `Bearer ${config.envs.TMDB_API_KEY}`
+              }
+            };
+
+            try {
+              const response = await fetch(url, options);
+              if (!response.ok) {
+                throw new Error('Failed to fetch movie genres');
+              }
+              const responseData = await response.json();
+              console.log(responseData);
+              setData(responseData);
+            } catch (error) {
+              console.error('Error fetching movie genres:', error);
+              setError('Failed to fetch movie genres');
+            }
+          };
+
+          fetchMovieVideos();
+          fetchMovieGenres();
+        }, [])
+      }
+
       <Infobox mb={5}>
         <Text
-          fontWeight={600}
-          fontSize={1}
-          _css={{ textTransform: "uppercase" }}
-          mb={3}
+            fontWeight={600}
+            fontSize={1}
+            _css={{ textTransform: "uppercase" }}
+            mb={3}
+        >
+          Tmdb Informations
+        </Text>
+        <hr /><br />
+        <Text
+            fontWeight={600}
+            fontSize={1}
+            _css={{ textTransform: "uppercase" }}
+            mb={3}
+        >
+          Name : {data && data.name}<br/>
+          <img src={data && `https://image.tmdb.org/t/p/w500${data.backdrop_path}`} alt={data && data.name}/> <br/>
+          Overview : {data && data.overview}<br/>
+          Genres : {data && data.genres && data.genres.map(genre => genre.name).join(', ')}
+          <br/>
+          {video && video.results.length > 0 && (
+              <iframe width="560" height="315" src={`https://www.youtube.com/embed/${video.results[0].key}`}
+                      title={data && data.name} frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen></iframe>
+          )}
+        </Text>
+      </Infobox>
+      <Infobox mb={5}>
+        <Text
+            fontWeight={600}
+            fontSize={1}
+            _css={{textTransform: "uppercase"}}
+            mb={3}
         >
           {getLocaleString("uploadDescription")}
         </Text>

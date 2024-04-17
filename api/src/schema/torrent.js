@@ -5,6 +5,7 @@ const Torrent = new mongoose.Schema({
   infoHash: String,
   binary: String,
   poster: String,
+  tmdbid: String,
   uploadedBy: mongoose.Schema.ObjectId,
   name: String,
   description: String,

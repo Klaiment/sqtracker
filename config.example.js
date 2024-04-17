@@ -38,7 +38,8 @@ module.exports = {
     // Maximum allowed hit'n'runs. Above this users will not be allowed to download. Set to -1 to disable.
     // A user has committed a hit'n'run when a torrent is fully downloaded and not seeded to a 1:1 ratio.
     SQ_MAXIMUM_HIT_N_RUNS: 1,
-
+    //For TMDB API, USE AccessToken Auth not API Key
+    TMDB_API_KEY: "your_tmdb_api_key",
     // A map of torrent categories that can be selected when uploading.
     // Each has an array of zero or more sources available within that category.
     SQ_TORRENT_CATEGORIES: {
