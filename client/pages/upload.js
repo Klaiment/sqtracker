@@ -83,23 +83,37 @@ export const TorrentFields = ({
       />
       {groupSuggestions}
       {!!Object.keys(categories).length && (
-        <Select
-          name="category"
-          label={getLocaleString("uploadCategory")}
-          value={category}
-          onChange={(e) => {
-            setCategory(e.target.value);
-          }}
-          mb={4}
-          required
-        >
-          {Object.keys(categories).map((cat) => (
-            <option key={cat} value={slugify(cat, { lower: true })}>
-              {cat}
-            </option>
-          ))}
-        </Select>
+          <>
+            <Select
+                name="category"
+                label={getLocaleString("uploadCategory")}
+                value={category}
+                onChange={(e) => {
+                  setCategory(e.target.value);
+                }}
+                mb={4}
+                required
+            >
+              {Object.keys(categories).map((cat) => (
+                  <option key={cat} value={slugify(cat, { lower: true })}>
+                    {cat}
+                  </option>
+              ))}
+            </Select>
+
+            {(category === "movies" || category === "tv") && (
+                <Input
+                    name="tmdbid"
+                    label={getLocaleString("tmdbid")}
+                    mb={4}
+                    defaultValue={values?.tmdbid}
+                />
+            )}
+
+          </>
       )}
+
+
       {!!sources.length && (
         <Select
           name="source"
@@ -296,6 +310,7 @@ const Upload = ({ token, userId }) => {
         },
         body: JSON.stringify({
           name: form.get("name"),
+          tmdbid: form.get("tmdbid") ? form.get("tmdbid") : null,
           description: form.get("description"),
           type: form.get("category"),
           source: form.get("source"),
