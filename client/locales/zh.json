@@ -187,6 +187,7 @@
   "statTotalRequests": "总请求数",
   "statUploadedTorrents": "已上传种子",
   "tagTaggedWith": "标记为",
+  "tmdbid": "TMDB ID",
   "tokenError": "令牌错误",
   "torrSeeders": "上传中用户",
   "torrLeechers": "下载中用户",
