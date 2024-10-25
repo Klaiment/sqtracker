@@ -33,34 +33,32 @@ services:
     image: mongo:6.0
     volumes:
       - ./data:/data/db
+  api:
+    container_name: sq_api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: always
     ports:
-        - "27017:27017"
-#  api:
-#    container_name: sq_api
-#    build:
-#      context: ./api
-#      dockerfile: Dockerfile
-#    restart: always
-#    ports:
-#      - "127.0.0.1:3001:3001"
-#    volumes:
-#      - type: bind
-#        source: ./config.js
-#        target: /sqtracker/config.js
-#    depends_on:
-#      - database
-#  client:
-#    container_name: sq_client
-#    build:
-#      context: ./client
-#      dockerfile: Dockerfile
-#    restart: always
-#    ports:
-#      - "127.0.0.1:3000:3000"
-#    volumes:
-#      - type: bind
-#        source: ./config.js
-#        target: /sqtracker/config.js
-#    depends_on:
-#      - api
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - type: bind
+        source: ./config.js
+        target: /sqtracker/config.js
+    depends_on:
+      - database
+  client:
+    container_name: sq_client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - type: bind
+        source: ./config.js
+        target: /sqtracker/config.js
+    depends_on:
+      - api
 
