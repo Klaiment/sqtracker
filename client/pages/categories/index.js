@@ -23,7 +23,7 @@ const CategoryItem = styled.li(() =>
       justifyContent: "center",
       fontSize: 3,
     },
-  })
+  }),
 );
 
 const Categories = ({ tags }) => {
@@ -125,7 +125,7 @@ export const getServerSideProps = withAuthServerSideProps(
       return { props: {} };
     }
   },
-  true
+  true,
 );
 
 export default Categories;

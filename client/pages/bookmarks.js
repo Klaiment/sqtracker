@@ -59,7 +59,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: { results: { torrents: [] } } };
     }
-  }
+  },
 );
 
 export default Bookmarks;

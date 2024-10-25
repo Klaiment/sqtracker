@@ -40,12 +40,12 @@ const InitiatePasswordReset = () => {
 
       addNotification(
         "success",
-        getLocaleString("passwordResetRequestSuccess")
+        getLocaleString("passwordResetRequestSuccess"),
       );
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("passwordResetRequestFailed")}: ${e.message}`
+        `${getLocaleString("passwordResetRequestFailed")}: ${e.message}`,
       );
       console.error(e);
     }

@@ -68,7 +68,7 @@ export const getServerSideProps = withAuthServerSideProps(
         `${SQ_API_URL}/torrent/search?${qs.stringify(params)}`,
         {
           headers: fetchHeaders,
-        }
+        },
       );
       if (
         searchRes.status === 403 &&
@@ -83,7 +83,7 @@ export const getServerSideProps = withAuthServerSideProps(
       return { props: {} };
     }
   },
-  true
+  true,
 );
 
 export default Tag;

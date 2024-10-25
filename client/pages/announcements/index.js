@@ -126,7 +126,7 @@ export const getServerSideProps = withAuthServerSideProps(
         `${SQ_API_URL}/announcements/page/0`,
         {
           headers: fetchHeaders,
-        }
+        },
       );
       if (
         announcementsRes.status === 403 &&
@@ -140,7 +140,7 @@ export const getServerSideProps = withAuthServerSideProps(
         `${SQ_API_URL}/announcements/pinned`,
         {
           headers: fetchHeaders,
-        }
+        },
       );
       const pinnedAnnouncements = await pinnedAnnouncementsRes.json();
 
@@ -151,7 +151,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: {} };
     }
-  }
+  },
 );
 
 export default Announcements;

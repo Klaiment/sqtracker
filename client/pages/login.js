@@ -61,14 +61,14 @@ const Login = () => {
 
       addNotification(
         "success",
-        `${getLocaleString("welcomeBack")} ${form.get("username")}!`
+        `${getLocaleString("welcomeBack")} ${form.get("username")}!`,
       );
 
       router.push("/");
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("logInFailed")}: ${e.message}`
+        `${getLocaleString("logInFailed")}: ${e.message}`,
       );
       console.error(e);
     }

@@ -52,7 +52,7 @@ const Announcement = ({ announcement, token, userRole }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (deleteRes.status !== 200) {
@@ -66,7 +66,7 @@ const Announcement = ({ announcement, token, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("annCouldNotDelAnnounce")}: ${e.message}`
+        `${getLocaleString("annCouldNotDelAnnounce")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -87,7 +87,7 @@ const Announcement = ({ announcement, token, userRole }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (pinRes.status !== 200) {
@@ -99,7 +99,7 @@ const Announcement = ({ announcement, token, userRole }) => {
         "success",
         `${getLocaleString("annAnnounce")} ${
           pinned ? getLocaleString("annUnpinned") : getLocaleString("annPinned")
-        } ${getLocaleString("userSuccessfully")}`
+        } ${getLocaleString("userSuccessfully")}`,
       );
 
       setPinned((p) => !p);
@@ -108,7 +108,7 @@ const Announcement = ({ announcement, token, userRole }) => {
         "error",
         `${getLocaleString("userCouldNot")} ${
           pinned ? getLocaleString("annUnpin") : getLocaleString("annPin")
-        } announcement: ${e.message}`
+        } announcement: ${e.message}`,
       );
       console.error(e);
     }
@@ -133,7 +133,7 @@ const Announcement = ({ announcement, token, userRole }) => {
           body: JSON.stringify({
             comment: form.get("comment"),
           }),
-        }
+        },
       );
 
       if (commentRes.status !== 200) {
@@ -158,7 +158,7 @@ const Announcement = ({ announcement, token, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("reqCommentNotPost")}: ${e.message}`
+        `${getLocaleString("reqCommentNotPost")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -212,7 +212,7 @@ const Announcement = ({ announcement, token, userRole }) => {
         <Text color="grey">
           {getLocaleString("reqPosted")}{" "}
           {moment(announcement.created).format(
-            `${getLocaleString("indexTime")}`
+            `${getLocaleString("indexTime")}`,
           )}{" "}
           {getLocaleString("reqBy")}{" "}
           {announcement.createdBy?.username ? (
@@ -227,7 +227,7 @@ const Announcement = ({ announcement, token, userRole }) => {
           <Text color="grey" mt={3}>
             {getLocaleString("annLastUpdated")}{" "}
             {moment(announcement.updated).format(
-              `${getLocaleString("indexTime")}`
+              `${getLocaleString("indexTime")}`,
             )}
           </Text>
         )}
@@ -315,7 +315,7 @@ export const getServerSideProps = withAuthServerSideProps(
         `${SQ_API_URL}/announcements/${slug}`,
         {
           headers: fetchHeaders,
-        }
+        },
       );
       if (
         announcementRes.status === 403 &&
@@ -329,7 +329,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: {} };
     }
-  }
+  },
 );
 
 export default Announcement;

@@ -99,13 +99,16 @@ export const NotificationsProvider = ({ children }) => {
       n.push({ type, text });
       return n;
     });
-    setTimeout(() => {
-      setNotifications((existing) => {
-        const n = [...existing];
-        n.shift();
-        return n;
-      });
-    }, delay + animation * 2);
+    setTimeout(
+      () => {
+        setNotifications((existing) => {
+          const n = [...existing];
+          n.shift();
+          return n;
+        });
+      },
+      delay + animation * 2,
+    );
   };
 
   const removeNotification = (index) => {

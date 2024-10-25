@@ -40,7 +40,7 @@ export const getServerSideProps = async ({ req, res }) => {
       .map(
         (url) => `<url>
         <loc>${url}</loc>
-    </url>`
+    </url>`,
       )
       .join("\n")}
 </urlset>

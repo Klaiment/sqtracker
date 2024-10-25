@@ -50,7 +50,7 @@ const FinalisePasswordReset = ({ token, email, tokenError }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("passwordResetFailed")}: ${e.message}`
+        `${getLocaleString("passwordResetFailed")}: ${e.message}`,
       );
       console.error(e);
     }

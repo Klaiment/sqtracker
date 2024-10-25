@@ -108,9 +108,9 @@ const List = ({ data = [], columns = [], ...rest }) => {
                       router.replace(
                         Object.keys(parsed).length
                           ? `${window.location.pathname}?${qs.stringify(
-                              parsed
+                              parsed,
                             )}`
-                          : window.location.pathname
+                          : window.location.pathname,
                       );
                     }
                   : undefined

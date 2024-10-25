@@ -74,7 +74,7 @@ const Body = styled.div(() =>
       py: 3,
       wordBreak: "normal",
     },
-  })
+  }),
 );
 
 export default Body;

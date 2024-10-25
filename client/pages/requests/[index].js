@@ -71,7 +71,7 @@ const Request = ({ request, token, user }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("reqCouldNotDelReq")}: ${e.message}`
+        `${getLocaleString("reqCouldNotDelReq")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -96,7 +96,7 @@ const Request = ({ request, token, user }) => {
           body: JSON.stringify({
             comment: form.get("comment"),
           }),
-        }
+        },
       );
 
       if (commentRes.status !== 200) {
@@ -121,7 +121,7 @@ const Request = ({ request, token, user }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("reqCommentNotPost")}: ${e.message}`
+        `${getLocaleString("reqCommentNotPost")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -146,7 +146,7 @@ const Request = ({ request, token, user }) => {
           body: JSON.stringify({
             infoHash: form.get("infoHash"),
           }),
-        }
+        },
       );
 
       if (suggestRes.status !== 200) {
@@ -156,7 +156,7 @@ const Request = ({ request, token, user }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("reqSuggestionAddSuccess")}`
+        `${getLocaleString("reqSuggestionAddSuccess")}`,
       );
 
       const { torrent } = await suggestRes.json();
@@ -166,7 +166,7 @@ const Request = ({ request, token, user }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("reqSuggestionNotAdded")}: ${e.message}`
+        `${getLocaleString("reqSuggestionNotAdded")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -189,7 +189,7 @@ const Request = ({ request, token, user }) => {
           body: JSON.stringify({
             infoHash,
           }),
-        }
+        },
       );
 
       if (acceptRes.status !== 200) {
@@ -199,7 +199,7 @@ const Request = ({ request, token, user }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("reqSuggestionAcceptSuccess")}`
+        `${getLocaleString("reqSuggestionAcceptSuccess")}`,
       );
 
       const { torrent } = await acceptRes.json();
@@ -207,7 +207,7 @@ const Request = ({ request, token, user }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("reqCouldNotAcceptSuggestion")}: ${e.message}`
+        `${getLocaleString("reqCouldNotAcceptSuggestion")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -297,7 +297,7 @@ const Request = ({ request, token, user }) => {
                 cell: ({ value }) => (
                   <Text icon={ListUl}>
                     {Object.keys(SQ_TORRENT_CATEGORIES).find(
-                      (c) => slugify(c, { lower: true }) === value
+                      (c) => slugify(c, { lower: true }) === value,
                     ) || "None"}
                   </Text>
                 ),
@@ -437,7 +437,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: {} };
     }
-  }
+  },
 );
 
 export default Request;

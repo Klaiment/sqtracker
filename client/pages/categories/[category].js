@@ -22,7 +22,7 @@ const Category = ({ results, token }) => {
   } = getConfig();
 
   const category = Object.keys(SQ_TORRENT_CATEGORIES).find(
-    (c) => slugify(c, { lower: true }) === categorySlug
+    (c) => slugify(c, { lower: true }) === categorySlug,
   );
 
   const { getLocaleString } = useContext(LocaleContext);
@@ -74,7 +74,7 @@ export const getServerSideProps = withAuthServerSideProps(
         `${SQ_API_URL}/torrent/search?${qs.stringify(params)}`,
         {
           headers: fetchHeaders,
-        }
+        },
       );
       if (
         searchRes.status === 403 &&
@@ -89,7 +89,7 @@ export const getServerSideProps = withAuthServerSideProps(
       return { props: {} };
     }
   },
-  true
+  true,
 );
 
 export default Category;

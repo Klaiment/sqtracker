@@ -19,7 +19,7 @@ const StyledTable = styled.table(() =>
       px: 4,
       py: 3,
     },
-  })
+  }),
 );
 
 const Stats = ({ stats, userRole }) => {
@@ -80,7 +80,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: {} };
     }
-  }
+  },
 );
 
 export default Stats;

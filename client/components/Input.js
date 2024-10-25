@@ -34,7 +34,7 @@ const StyledInput = styled.input(
   `height: 40px;`,
   layout,
   space,
-  typography
+  typography,
 );
 
 const StyledTextarea = styled.textarea(shared, layout, space, typography);

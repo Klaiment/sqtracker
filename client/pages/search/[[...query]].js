@@ -102,7 +102,7 @@ export const getServerSideProps = withAuthServerSideProps(
         `${SQ_API_URL}/torrent/search?${qs.stringify(params)}`,
         {
           headers: fetchHeaders,
-        }
+        },
       );
       if (
         searchRes.status === 403 &&
@@ -120,7 +120,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: { results: { torrents: [] } } };
     }
-  }
+  },
 );
 
 export default Search;

@@ -49,7 +49,7 @@ const NewRequest = ({ token }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("reqRequestCreatedSuccess")}`
+        `${getLocaleString("reqRequestCreatedSuccess")}`,
       );
 
       const { index } = await createRequestRes.json();
@@ -57,7 +57,7 @@ const NewRequest = ({ token }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("reqCouldNotCreateReq")}: ${e.message}`
+        `${getLocaleString("reqCouldNotCreateReq")}: ${e.message}`,
       );
       console.error(e);
     }

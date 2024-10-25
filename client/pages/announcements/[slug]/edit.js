@@ -49,7 +49,7 @@ const EditAnnouncement = ({ announcement, token, userRole }) => {
             pinned: !!form.get("pinned"),
             allowComments: !!form.get("allowComments"),
           }),
-        }
+        },
       );
 
       if (updateAnnouncementRes.status !== 200) {
@@ -59,7 +59,7 @@ const EditAnnouncement = ({ announcement, token, userRole }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("annAnnounceUpdatedSuccess")}`
+        `${getLocaleString("annAnnounceUpdatedSuccess")}`,
       );
 
       const slug = await updateAnnouncementRes.text();
@@ -67,7 +67,7 @@ const EditAnnouncement = ({ announcement, token, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("annCouldNotUpdateAnnounce")}: ${e.message}`
+        `${getLocaleString("annCouldNotUpdateAnnounce")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -134,7 +134,7 @@ export const getServerSideProps = withAuthServerSideProps(
         `${SQ_API_URL}/announcements/${slug}`,
         {
           headers: fetchHeaders,
-        }
+        },
       );
       if (
         announcementRes.status === 403 &&
@@ -148,7 +148,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: {} };
     }
-  }
+  },
 );
 
 export default EditAnnouncement;
