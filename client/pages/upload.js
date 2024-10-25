@@ -38,7 +38,7 @@ const FileUpload = styled(Box)(() =>
     "&:hover": {
       bg: "sidebar",
     },
-  })
+  }),
 );
 
 export const TorrentFields = ({
@@ -48,7 +48,7 @@ export const TorrentFields = ({
   groupSuggestions,
 }) => {
   const [category, setCategory] = useState(
-    values?.category ?? slugify(Object.keys(categories)[0], { lower: true })
+    values?.category ?? slugify(Object.keys(categories)[0], { lower: true }),
   );
   const [sources, setSources] = useState([]);
   const [tags, setTags] = useState(values?.tags?.split(",") ?? []);
@@ -60,10 +60,10 @@ export const TorrentFields = ({
       category
         ? categories[
             Object.keys(categories).find(
-              (cat) => slugify(cat, { lower: true }) === category
+              (cat) => slugify(cat, { lower: true }) === category,
             )
           ]
-        : []
+        : [],
     );
   }, [category]);
 
@@ -83,36 +83,34 @@ export const TorrentFields = ({
       />
       {groupSuggestions}
       {!!Object.keys(categories).length && (
-          <>
-            <Select
-                name="category"
-                label={getLocaleString("uploadCategory")}
-                value={category}
-                onChange={(e) => {
-                  setCategory(e.target.value);
-                }}
-                mb={4}
-                required
-            >
-              {Object.keys(categories).map((cat) => (
-                  <option key={cat} value={slugify(cat, { lower: true })}>
-                    {cat}
-                  </option>
-              ))}
-            </Select>
+        <>
+          <Select
+            name="category"
+            label={getLocaleString("uploadCategory")}
+            value={category}
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
+            mb={4}
+            required
+          >
+            {Object.keys(categories).map((cat) => (
+              <option key={cat} value={slugify(cat, { lower: true })}>
+                {cat}
+              </option>
+            ))}
+          </Select>
 
-            {(category === "movies" || category === "tv") && (
-                <Input
-                    name="tmdbid"
-                    label={getLocaleString("tmdbid")}
-                    mb={4}
-                    defaultValue={values?.tmdbid}
-                />
-            )}
-
-          </>
+          {(category === "movies" || category === "tv") && (
+            <Input
+              name="tmdbid"
+              label={getLocaleString("tmdbid")}
+              mb={4}
+              defaultValue={values?.tmdbid}
+            />
+          )}
+        </>
       )}
-
 
       {!!sources.length && (
         <Select
@@ -228,7 +226,7 @@ const Upload = ({ token, userId }) => {
         const reader = new FileReader();
         reader.onload = async () => {
           console.log(
-            `[DEBUG] upload complete: ${reader.result.slice(0, 64)}...`
+            `[DEBUG] upload complete: ${reader.result.slice(0, 64)}...`,
           );
           const [, b64] = reader.result.split("base64,");
           setTorrentFile({ name: file.name, b64 });
@@ -257,7 +255,7 @@ const Upload = ({ token, userId }) => {
         const reader = new FileReader();
         reader.onload = async () => {
           console.log(
-            `[DEBUG] Poster upload complete: ${reader.result.slice(0, 64)}...`
+            `[DEBUG] Poster upload complete: ${reader.result.slice(0, 64)}...`,
           );
           const [, posterB64] = reader.result.split("base64,");
           setPosterFile({ name: file.name, b64: posterB64 });
@@ -330,7 +328,7 @@ const Upload = ({ token, userId }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("uploadTorrentUploadSuccess")}`
+        `${getLocaleString("uploadTorrentUploadSuccess")}`,
       );
 
       const infoHash = await uploadRes.text();
@@ -338,7 +336,7 @@ const Upload = ({ token, userId }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("uploadCouldNotUploadFile")}: ${e.message}`
+        `${getLocaleString("uploadCouldNotUploadFile")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -356,7 +354,7 @@ const Upload = ({ token, userId }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (suggestionsRes.status !== 200) {
@@ -369,7 +367,7 @@ const Upload = ({ token, userId }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("uploadCouldNotGetGroupSuggestions")}: ${e.message}`
+        `${getLocaleString("uploadCouldNotGetGroupSuggestions")}: ${e.message}`,
       );
       console.error(e);
     }

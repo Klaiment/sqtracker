@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef, useEffect} from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import getConfig from "next/config";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -33,7 +33,7 @@ import MarkdownInput from "../../components/MarkdownInput";
 import LocaleContext from "../../utils/LocaleContext";
 import fetch from "node-fetch";
 import config from "../../../config";
-import {getCookieParser} from "next/dist/server/api-utils";
+import { getCookieParser } from "next/dist/server/api-utils";
 // from https://stackoverflow.com/a/44681235/7739519
 // API TMDB : config.envs.TMDB_API_KEY
 const insert = (children = [], [head, ...tail], size) => {
@@ -77,7 +77,7 @@ export const Info = ({ title, items }) => (
             </Text>
             <Text>{val}</Text>
           </Box>
-        ) : null
+        ) : null,
       )}
     </Box>
   </Infobox>
@@ -147,7 +147,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
   const [userVote, setUserVote] = useState(
     (torrent.userHasUpvoted && "up") ||
       (torrent.userHasDownvoted && "down") ||
-      null
+      null,
   );
   const [votes, setVotes] = useState({
     up: torrent.upvotes,
@@ -202,7 +202,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
             tags: form.get("tags"),
             mediaInfo: form.get("mediaInfo"),
           }),
-        }
+        },
       );
 
       if (uploadRes.status !== 200) {
@@ -216,7 +216,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("torrCouldEditTorr")}: ${e.message}`
+        `${getLocaleString("torrCouldEditTorr")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -235,7 +235,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (deleteRes.status !== 200) {
@@ -249,7 +249,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("torrCouldNotDelTorr")}: ${e.message}`
+        `${getLocaleString("torrCouldNotDelTorr")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -274,7 +274,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           body: JSON.stringify({
             comment: form.get("comment"),
           }),
-        }
+        },
       );
 
       if (commentRes.status !== 200) {
@@ -299,7 +299,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("reqCommentNotPost")}: ${e.message}`
+        `${getLocaleString("reqCommentNotPost")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -342,7 +342,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (voteRes.status !== 200) {
@@ -354,7 +354,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("torrCouldNotSubmitVote")}: ${e.message}`
+        `${getLocaleString("torrCouldNotSubmitVote")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -379,7 +379,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           body: JSON.stringify({
             reason: form.get("reason"),
           }),
-        }
+        },
       );
 
       if (reportRes.status !== 200) {
@@ -389,14 +389,14 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("torrReportSubmitSuccess")}`
+        `${getLocaleString("torrReportSubmitSuccess")}`,
       );
 
       setShowReportModal(false);
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("torrCouldNotSubmitReport")}: ${e.message}`
+        `${getLocaleString("torrCouldNotSubmitReport")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -415,7 +415,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (toggleRes.status !== 200) {
@@ -429,7 +429,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("torrCouldNotToggleFL")}: ${e.message}`
+        `${getLocaleString("torrCouldNotToggleFL")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -448,7 +448,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (removeRes.status !== 200) {
@@ -458,14 +458,14 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("torrTorrRemFromGroupSuccess")}`
+        `${getLocaleString("torrTorrRemFromGroupSuccess")}`,
       );
 
       setHasGroup(false);
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("torrCouldNotRemTorrFromGroup")}: ${e.message}`
+        `${getLocaleString("torrCouldNotRemTorrFromGroup")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -484,7 +484,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (bookmarkRes.status !== 200) {
@@ -498,14 +498,14 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
           bookmarked
             ? getLocaleString("torrRemovedFrom")
             : getLocaleString("torrAddedTo")
-        } ${getLocaleString("navBookmarks")}`
+        } ${getLocaleString("navBookmarks")}`,
       );
 
       setBookmarked((b) => !b);
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("torrCouldNotBookmarkTorr")}: ${e.message}`
+        `${getLocaleString("torrCouldNotBookmarkTorr")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -514,11 +514,11 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
   };
 
   const category = Object.keys(SQ_TORRENT_CATEGORIES).find(
-    (c) => slugify(c, { lower: true }) === torrent.type
+    (c) => slugify(c, { lower: true }) === torrent.type,
   );
 
   const source = SQ_TORRENT_CATEGORIES[category].find(
-    (s) => slugify(s, { lower: true }) === torrent.source
+    (s) => slugify(s, { lower: true }) === torrent.source,
   );
 
   const parsedFiles = torrent.files
@@ -650,7 +650,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
             </Link>
           ) : undefined,
           [getLocaleString("torrDate")]: moment(torrent.created).format(
-            `${getLocaleString("indexTime")}`
+            `${getLocaleString("indexTime")}`,
           ),
           [getLocaleString("reqInfohash")]: (
             <Text
@@ -697,119 +697,132 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
         </Infobox>
       )}
 
-      { torrent.tmdbid && (
+      {torrent.tmdbid &&
+        useEffect(() => {
+          const language = cookies.locale === "fr" ? "fr-FR" : "en-US";
+          let type = torrent.type === "tv" ? "tv" : "movie";
 
-          useEffect(() => {
-            const language = cookies.locale === "fr" ? "fr-FR" : "en-US";
-            let type = torrent.type === "tv" ? "tv" : "movie";
-
-            const fetchMovieVideos = async () => {
-              const url = `https://api.themoviedb.org/3/${type}/${torrent.tmdbid}/videos`;
-              const options = {
-                method: 'GET',
-                headers: {
-                  accept: 'application/json',
-                  Authorization: `Bearer ${TMDB_API_KEY}`
-                }
-              };
-
-              try {
-                const response = await fetch(url, options);
-                if (!response.ok) {
-                  throw new Error('Failed to fetch movie videos');
-                }
-                const responseData = await response.json();
-                setVideo(responseData);
-              } catch (error) {
-                console.error('Error fetching movie videos:', error);
-                setError('Failed to fetch movie videos');
-              }
+          const fetchMovieVideos = async () => {
+            const url = `https://api.themoviedb.org/3/${type}/${torrent.tmdbid}/videos`;
+            const options = {
+              method: "GET",
+              headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${TMDB_API_KEY}`,
+              },
             };
 
-            const fetchMovieGenres = async () => {
-              const url = `https://api.themoviedb.org/3/${type}/${torrent.tmdbid}?language=${language}`;
-              const options = {
-                method: 'GET',
-                headers: {
-                  accept: 'application/json',
-                  Authorization: `Bearer ${TMDB_API_KEY}`
-                }
-              };
-
-              try {
-                const response = await fetch(url, options);
-                if (!response.ok) {
-                  throw new Error('Failed to fetch movie genres');
-                }
-                const responseData = await response.json();
-                setData(responseData);
-              } catch (error) {
-                console.error('Error fetching movie genres:', error);
-                setError('Failed to fetch movie genres');
+            try {
+              const response = await fetch(url, options);
+              if (!response.ok) {
+                throw new Error("Failed to fetch movie videos");
               }
+              const responseData = await response.json();
+              setVideo(responseData);
+            } catch (error) {
+              console.error("Error fetching movie videos:", error);
+              setError("Failed to fetch movie videos");
+            }
+          };
+
+          const fetchMovieGenres = async () => {
+            const url = `https://api.themoviedb.org/3/${type}/${torrent.tmdbid}?language=${language}`;
+            const options = {
+              method: "GET",
+              headers: {
+                accept: "application/json",
+                Authorization: `Bearer ${TMDB_API_KEY}`,
+              },
             };
 
-            fetchMovieVideos();
-            fetchMovieGenres();
-          }, [])
-      )}
+            try {
+              const response = await fetch(url, options);
+              if (!response.ok) {
+                throw new Error("Failed to fetch movie genres");
+              }
+              const responseData = await response.json();
+              setData(responseData);
+            } catch (error) {
+              console.error("Error fetching movie genres:", error);
+              setError("Failed to fetch movie genres");
+            }
+          };
+
+          fetchMovieVideos();
+          fetchMovieGenres();
+        }, [])}
       {torrent.tmdbid && (
-
-      <Infobox mb={5}>
-        <Text
+        <Infobox mb={5}>
+          <Text
             fontWeight={600}
             fontSize={1}
             _css={{ textTransform: "uppercase" }}
             mb={3}
-        >
-          Tmdb Informations
-        </Text>
-        <hr /><br />
-        <div>
-          {data && (
+          >
+            Tmdb Informations
+          </Text>
+          <hr />
+          <br />
+          <div>
+            {data && (
               <>
-                <center><h1>{data.original_title || data.name}</h1></center>
-                <br/>
-                <img src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`} alt={data.name}/> <br/>
-                <h2>Overview :</h2> {data.overview}<br/>
-                <h2>Genres :</h2> {data.genres && data.genres.map(genre => genre.name).join(', ')}
-                <br/>
-                <h2>Runtime :</h2> {data.runtime} minutes<br/>
+                <center>
+                  <h1>{data.original_title || data.name}</h1>
+                </center>
+                <br />
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
+                  alt={data.name}
+                />{" "}
+                <br />
+                <h2>Overview :</h2> {data.overview}
+                <br />
+                <h2>Genres :</h2>{" "}
+                {data.genres &&
+                  data.genres.map((genre) => genre.name).join(", ")}
+                <br />
+                <h2>Runtime :</h2> {data.runtime} minutes
+                <br />
                 {torrent.type === "tv" && (
-                    <>
-                      <h2>Last air date :</h2> {data.last_air_date}<br/>
-                      <h2>Seasons :</h2> {data.number_of_seasons}<br/>
-                      <h2>Episodes :</h2> {data.number_of_episodes}<br/>
-                    </>
+                  <>
+                    <h2>Last air date :</h2> {data.last_air_date}
+                    <br />
+                    <h2>Seasons :</h2> {data.number_of_seasons}
+                    <br />
+                    <h2>Episodes :</h2> {data.number_of_episodes}
+                    <br />
+                  </>
                 )}
                 <a
-                    href={`https://www.themoviedb.org/${torrent.type === "tv" ? "tv" : "movie"}/${data.id}`}
-                    target="_blank" rel="noopener noreferrer"
+                  href={`https://www.themoviedb.org/${torrent.type === "tv" ? "tv" : "movie"}/${data.id}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   TMDB page
                 </a>
-                <br/>
+                <br />
                 {video && video.results.length > 0 && (
-                    <iframe
-                        width="560" height="315"
-                        src={`https://www.youtube.com/embed/${video.results[0].key}`}
-                        title={data.name}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    />
+                  <iframe
+                    width="560"
+                    height="315"
+                    src={`https://www.youtube.com/embed/${video.results[0].key}`}
+                    title={data.name}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 )}
               </>
-          )}
-        </div>
-      </Infobox>
-          )}
+            )}
+          </div>
+        </Infobox>
+      )}
       <Infobox mb={5}>
         <Text
-            fontWeight={600}
-            fontSize={1}
-            _css={{textTransform: "uppercase"}}
-            mb={3}
+          fontWeight={600}
+          fontSize={1}
+          _css={{ textTransform: "uppercase" }}
+          mb={3}
         >
           {getLocaleString("uploadDescription")}
         </Text>
@@ -1111,7 +1124,7 @@ export const getServerSideProps = withAuthServerSideProps(
       return { props: {} };
     }
   },
-  true
+  true,
 );
 
 export default Torrent;

@@ -24,7 +24,7 @@ const Box = styled.div(
   border,
   position,
   shadow,
-  ({ _css }) => styledCss({ ..._css })
+  ({ _css }) => styledCss({ ..._css }),
 );
 
 export default Box;

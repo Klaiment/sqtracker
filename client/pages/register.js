@@ -64,14 +64,14 @@ const Register = ({ token: inviteToken, tokenError }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("welcome")} ${form.get("username")}!`
+        `${getLocaleString("welcome")} ${form.get("username")}!`,
       );
 
       router.push("/");
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("registerFailed")}: ${e.message}`
+        `${getLocaleString("registerFailed")}: ${e.message}`,
       );
       console.error(e);
     }

@@ -66,7 +66,7 @@ const LocaleSelector = styled.select(() =>
     fontFamily: "body",
     cursor: "pointer",
     p: 0,
-  })
+  }),
 );
 
 const Navigation = ({ isMobile, menuIsOpen, setMenuIsOpen }) => {

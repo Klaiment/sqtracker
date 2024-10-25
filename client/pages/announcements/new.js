@@ -49,7 +49,7 @@ const NewAnnouncement = ({ token, userRole }) => {
             pinned: !!form.get("pinned"),
             allowComments: !!form.get("allowComments"),
           }),
-        }
+        },
       );
 
       if (createAnnouncementRes.status !== 200) {
@@ -59,7 +59,7 @@ const NewAnnouncement = ({ token, userRole }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("annAnnounceCreatSuccess")}`
+        `${getLocaleString("annAnnounceCreatSuccess")}`,
       );
 
       const slug = await createAnnouncementRes.text();
@@ -67,7 +67,7 @@ const NewAnnouncement = ({ token, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("annCouldNotCreateAnnounce")}: ${e.message}`
+        `${getLocaleString("annCouldNotCreateAnnounce")}: ${e.message}`,
       );
       console.error(e);
     }

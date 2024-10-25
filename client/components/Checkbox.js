@@ -48,7 +48,7 @@ const Container = styled.label(
         height: "20px",
       },
     }),
-  space
+  space,
 );
 
 const Checkbox = ({ label, name, inputProps, ...rest }) => (

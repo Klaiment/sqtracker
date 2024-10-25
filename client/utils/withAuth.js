@@ -31,7 +31,7 @@ export const withAuth = (Component, noRedirect = false) => {
 export const withAuthServerSideProps = (
   getServerSideProps,
   publicAccess = false,
-  noRedirect = false
+  noRedirect = false,
 ) => {
   return async (ctx) => {
     let { token, userId } = getReqCookies(ctx.req);

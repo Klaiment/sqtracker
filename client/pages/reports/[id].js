@@ -40,7 +40,7 @@ const Report = ({ report, token, userRole }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (resolveRes.status !== 200) {
@@ -54,7 +54,7 @@ const Report = ({ report, token, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("repCouldNotResolveRep")}: ${e.message}`
+        `${getLocaleString("repCouldNotResolveRep")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -113,7 +113,7 @@ const Report = ({ report, token, userRole }) => {
             </Text>
           ),
           [getLocaleString("accCreated")]: moment(
-            report.torrent.created
+            report.torrent.created,
           ).format(`${getLocaleString("indexTime")}`),
         }}
       />
@@ -163,7 +163,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: {} };
     }
-  }
+  },
 );
 
 export default Report;

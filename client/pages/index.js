@@ -121,7 +121,7 @@ const Index = ({
               <Text color="grey">
                 {getLocaleString("reqPosted")}{" "}
                 {moment(latestAnnouncement.created).format(
-                  `${getLocaleString("indexTime")}`
+                  `${getLocaleString("indexTime")}`,
                 )}{" "}
                 {getLocaleString("reqBy")}{" "}
                 {latestAnnouncement.createdBy?.username ? (
@@ -183,7 +183,7 @@ export const getServerSideProps = withAuthServerSideProps(
         `${SQ_API_URL}/announcements/latest`,
         {
           headers: fetchHeaders,
-        }
+        },
       );
       let latestAnnouncement = null;
       if (latestAnnouncementRes.status === 200) {
@@ -205,7 +205,7 @@ export const getServerSideProps = withAuthServerSideProps(
     }
   },
   false,
-  true
+  true,
 );
 
 export default Index;

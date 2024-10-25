@@ -73,7 +73,7 @@ const BuyItem = ({ text, cost, wallet, handleBuy }) => {
 
 const Account = ({ token, invites = [], user, userRole }) => {
   const [remainingInvites, setRemainingInvites] = useState(
-    user.remainingInvites ?? 0
+    user.remainingInvites ?? 0,
   );
   const [invitesList, setInvitesList] = useState(invites);
   const [showInviteModal, setShowInviteModal] = useState(false);
@@ -139,8 +139,8 @@ const Account = ({ token, invites = [], user, userRole }) => {
         `${getLocaleString(
           SQ_DISABLE_EMAIL
             ? "accInviteSentSuccessNoEmail"
-            : "accInviteSentSuccess"
-        )}`
+            : "accInviteSentSuccess",
+        )}`,
       );
 
       setRemainingInvites((r) => r - 1);
@@ -149,7 +149,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("accCouldNotSendInvite")}: ${e.message}`
+        `${getLocaleString("accCouldNotSendInvite")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -175,7 +175,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
             password: form.get("password"),
             newPassword: form.get("newPassword"),
           }),
-        }
+        },
       );
 
       if (changePasswordRes.status !== 200) {
@@ -193,7 +193,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("accCouldNotChangePass")}: ${e.message}`
+        `${getLocaleString("accCouldNotChangePass")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -228,7 +228,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
 
       addNotification(
         "success",
-        `${getLocaleString("accItemsPurchasedSuccess")}`
+        `${getLocaleString("accItemsPurchasedSuccess")}`,
       );
 
       const pointsRemaining = await buyRes.text();
@@ -244,7 +244,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("accCouldNotBuyItems")}: ${e.message}`
+        `${getLocaleString("accCouldNotBuyItems")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -287,7 +287,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
               },
-            }
+            },
           );
           const totpData = await generateRes.json();
           setTotpQrData(totpData);
@@ -315,7 +315,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("accCouldNotToggle2FA")}: ${e.message}`
+        `${getLocaleString("accCouldNotToggle2FA")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -346,7 +346,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("accCouldNotDelAcc")}: ${e.message}`
+        `${getLocaleString("accCouldNotDelAcc")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -376,7 +376,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
           <strong>{SQ_BP_EARNED_PER_GB}</strong>{" "}
           {pluralize(
             `${getLocaleString("accBonusPointsHave")}`,
-            SQ_BP_EARNED_PER_GB
+            SQ_BP_EARNED_PER_GB,
           )}{" "}
           {getLocaleString("accForEveryGBYouUpload")}.
         </Text>
@@ -385,7 +385,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
           <strong>{SQ_BP_EARNED_PER_FILLED_REQUEST}</strong>{" "}
           {pluralize(
             `${getLocaleString("accBonusPointsHave")}`,
-            SQ_BP_EARNED_PER_FILLED_REQUEST
+            SQ_BP_EARNED_PER_FILLED_REQUEST,
           )}{" "}
           {getLocaleString("accEveryRequestYouFulfill")}{" "}
           <strong>{SQ_BP_EARNED_PER_FILLED_REQUEST * 2}</strong>{" "}
@@ -434,7 +434,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
                 disabled={remainingInvites < 1}
               >
                 {getLocaleString(
-                  SQ_DISABLE_EMAIL ? "accSendInviteNoEmail" : "accSendInvite"
+                  SQ_DISABLE_EMAIL ? "accSendInviteNoEmail" : "accSendInvite",
                 )}
               </Button>
             </Box>
@@ -500,11 +500,11 @@ const Account = ({ token, invites = [], user, userRole }) => {
                       variant="secondary"
                       onClick={() => {
                         copy(
-                          `${location.protocol}//${location.host}/register?token=${row.token}`
+                          `${location.protocol}//${location.host}/register?token=${row.token}`,
                         );
                         addNotification(
                           "success",
-                          `${getLocaleString("accInviteLinkCopiedClipboard")}`
+                          `${getLocaleString("accInviteLinkCopiedClipboard")}`,
                         );
                       }}
                       disabled={row.claimed || row.validUntil < Date.now()}
@@ -662,7 +662,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
         <Modal close={() => setShowInviteModal(false)}>
           <Text mb={5}>
             {getLocaleString(
-              SQ_DISABLE_EMAIL ? "accInviteText1NoEmail" : "accInviteText1"
+              SQ_DISABLE_EMAIL ? "accInviteText1NoEmail" : "accInviteText1",
             )}
           </Text>
           <form onSubmit={handleGenerateInvite}>
@@ -690,7 +690,7 @@ const Account = ({ token, invites = [], user, userRole }) => {
               </Button>
               <Button>
                 {getLocaleString(
-                  SQ_DISABLE_EMAIL ? "accSendInviteNoEmail" : "accSendInvite"
+                  SQ_DISABLE_EMAIL ? "accSendInviteNoEmail" : "accSendInvite",
                 )}
               </Button>
             </Box>
@@ -759,7 +759,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: {} };
     }
-  }
+  },
 );
 
 export default Account;

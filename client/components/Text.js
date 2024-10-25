@@ -25,7 +25,7 @@ const StyledText = styled.p(
   ({ _css }) =>
     styledCss({
       ..._css,
-    })
+    }),
 );
 
 const Text = ({

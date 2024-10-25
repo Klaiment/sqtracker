@@ -67,7 +67,7 @@ const Wiki = ({ page, allPages, token, userRole, slug }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("wikiCouldNotDelPage")}: ${e.message}`
+        `${getLocaleString("wikiCouldNotDelPage")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -95,7 +95,7 @@ const Wiki = ({ page, allPages, token, userRole, slug }) => {
             body: form.get("body"),
             public: !!form.get("public"),
           }),
-        }
+        },
       );
 
       if (updateWikiRes.status !== 200) {
@@ -112,7 +112,7 @@ const Wiki = ({ page, allPages, token, userRole, slug }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("wikiCouldNotUpdatePage")}: ${e.message}`
+        `${getLocaleString("wikiCouldNotUpdatePage")}: ${e.message}`,
       );
       console.error(e);
     }
@@ -166,7 +166,7 @@ const Wiki = ({ page, allPages, token, userRole, slug }) => {
             <Text color="grey">
               {getLocaleString("wikiLastEdited")}{" "}
               {moment(page.updated ?? page.created).format(
-                `${getLocaleString("indexTime")}`
+                `${getLocaleString("indexTime")}`,
               )}{" "}
               {getLocaleString("reqBy")}{" "}
               {page.createdBy?.username ? (
@@ -245,16 +245,16 @@ const Wiki = ({ page, allPages, token, userRole, slug }) => {
             </form>
           )}
         </>
-      ) : allPages.length > 0 ? (
-          <>
-            {allPages.map((p) => (
-                <Link key={`page-${p.slug}`} href={`/wiki${p.slug}`} passHref>
-                  <Text as="a" display="block">
-                    {p.title}
-                  </Text>
-                </Link>
-            ))}
-          </>
+      ) : allPages?.length > 0 ? (
+        <>
+          {allPages.map((p) => (
+            <Link key={`page-${p.slug}`} href={`/wiki${p.slug}`} passHref>
+              <Text as="a" display="block">
+                {p.title}
+              </Text>
+            </Link>
+          ))}
+        </>
       ) : (
         <Text>{getLocaleString("wikiThereNothingHereYet")}</Text>
       )}
@@ -291,34 +291,37 @@ export const getServerSideProps = withAuthServerSideProps(
 
     const { role } = token ? jwt.verify(token, SQ_JWT_SECRET) : { role: null };
     try {
-        let page, allPages;
-        if (parsedSlug.length === 0) {
-          const wikiRes = await fetch(`${SQ_API_URL}/wiki`, {
-            headers: fetchHeaders,
-          });
-          ({ allPages } = await wikiRes.json());
+      let page, allPages;
+      if (parsedSlug.length === 0) {
+        const wikiRes = await fetch(`${SQ_API_URL}/wiki`, {
+          headers: fetchHeaders,
+        });
+        ({ allPages } = await wikiRes.json());
 
-          return {
-            props: {allPages, token, userRole: role, slug: parsedSlug, },
-          };
+        return {
+          props: { allPages, token, userRole: role, slug: parsedSlug },
+        };
       } else {
         const wikiRes = await fetch(`${SQ_API_URL}/wiki/${parsedSlug}`, {
           headers: fetchHeaders,
         });
-        if (wikiRes.status === 403 && (await wikiRes.text()) === "User is banned") {
+        if (
+          wikiRes.status === 403 &&
+          (await wikiRes.text()) === "User is banned"
+        ) {
           throw "banned";
         }
         ({ page, allPages } = await wikiRes.json());
         return {
           props: { page, allPages, token, userRole: role, slug: parsedSlug },
         };
-    }
+      }
     } catch (e) {
       if (e === "banned") throw "banned";
       return { props: { token, userRole: role, slug: parsedSlug } };
     }
   },
-  true
+  true,
 );
 
 export default Wiki;

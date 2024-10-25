@@ -138,7 +138,7 @@ const GlobalStyle = createGlobalStyle(
     border: 2px solid ${colors.background};
     border-radius: 10px;
   }
-`
+`,
 );
 
 const spin = keyframes`
@@ -187,7 +187,7 @@ const SqTracker = ({ Component, pageProps, initialTheme }) => {
   const [locale, setLocale] = useState(SQ_SITE_DEFAULT_LOCALE ?? "en");
 
   const allowThemeToggle = !Object.keys(SQ_CUSTOM_THEME ?? {}).some(
-    (key) => key !== "primary"
+    (key) => key !== "primary",
   );
 
   const setThemeAndSave = (theme) => {
@@ -412,7 +412,7 @@ const SqTracker = ({ Component, pageProps, initialTheme }) => {
                           variant="secondary"
                           onClick={() => {
                             setThemeAndSave(
-                              theme === "light" ? "dark" : "light"
+                              theme === "light" ? "dark" : "light",
                             );
                           }}
                           width="40px"

@@ -38,7 +38,7 @@ export const WikiFields = ({ values }) => {
           if (value.endsWith("/") && value !== "/") value = value.slice(0, -1);
           const split = value.split("/");
           const slugified = split.map((token) =>
-            slugify(token, { lower: true })
+            slugify(token, { lower: true }),
           );
           setSlugValue(slugified.join("/"));
         }}
@@ -126,7 +126,7 @@ const NewWiki = ({ token, userRole }) => {
     } catch (e) {
       addNotification(
         "error",
-        `${getLocaleString("wikiCouldNotCreatePage")}: ${e.message}`
+        `${getLocaleString("wikiCouldNotCreatePage")}: ${e.message}`,
       );
       console.error(e);
     }

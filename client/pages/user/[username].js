@@ -58,7 +58,7 @@ const User = ({ token, user, userRole }) => {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-        }
+        },
       );
 
       if (res.status !== 200) {
@@ -72,7 +72,7 @@ const User = ({ token, user, userRole }) => {
           banned
             ? [getLocaleString("userUnbanned")]
             : [getLocaleString("userBanned")]
-        } ${getLocaleString("userSuccessfully")}`
+        } ${getLocaleString("userSuccessfully")}`,
       );
 
       setBanned((b) => !b);
@@ -82,7 +82,7 @@ const User = ({ token, user, userRole }) => {
         "error",
         `${getLocaleString("userCouldNot")} ${
           banned ? [getLocaleString("userUnban")] : [getLocaleString("userBan")]
-        } ${user.username}: ${e.message}`
+        } ${user.username}: ${e.message}`,
       );
       console.error(e);
     }
@@ -376,7 +376,7 @@ export const getServerSideProps = withAuthServerSideProps(
       if (e === "banned") throw "banned";
       return { props: {} };
     }
-  }
+  },
 );
 
 export default User;

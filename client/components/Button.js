@@ -138,7 +138,7 @@ const StyledButton = styled.button(
   layout,
   space,
   display,
-  flexbox
+  flexbox,
 );
 
 const Button = ({ onClick, disabled, fref, ...rest }) => (

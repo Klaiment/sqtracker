@@ -28,7 +28,7 @@ const StyledSelect = styled.select(
     }),
   layout,
   space,
-  typography
+  typography,
 );
 
 const Select = ({ label, required, fRef, ...rest }) => {

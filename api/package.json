@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon --exec babel-node src/index.js",
     "start": "babel-node src/index.js",
-    "migration:torrent-add-fuzzy-name": "babel-node src/migrations/torrent-add-fuzzy-name.js"
+    "migration:torrent-add-fuzzy-name": "babel-node src/migrations/torrent-add-fuzzy-name.js",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\""
   },
   "dependencies": {
     "@babel/core": "^7.14.6",

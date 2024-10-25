@@ -52,7 +52,7 @@ const TorrentList = ({
     router.push(
       Object.keys(query).length
         ? `${window.location.pathname}?${qs.stringify(query)}`
-        : window.location.pathname
+        : window.location.pathname,
     );
   };
 
@@ -66,7 +66,7 @@ const TorrentList = ({
               Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
             },
-          }
+          },
         );
 
         const results = await searchRes.json();
@@ -110,7 +110,7 @@ const TorrentList = ({
             cell: ({ value }) => {
               const category =
                 Object.keys(categories).find(
-                  (c) => slugify(c, { lower: true }) === value
+                  (c) => slugify(c, { lower: true }) === value,
                 ) || "None";
               return (
                 <Text icon={ListUl} title={category}>
@@ -186,7 +186,7 @@ const TorrentList = ({
             cell: ({ value }) => (
               <Text>
                 {moment(value).format(
-                  `${getLocaleString("userUserSinceTime")}`
+                  `${getLocaleString("userUserSinceTime")}`,
                 )}
               </Text>
             ),
