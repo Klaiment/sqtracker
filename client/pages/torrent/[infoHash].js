@@ -170,6 +170,7 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
       SQ_SITE_WIDE_FREELEECH,
       SQ_MINIMUM_RATIO,
       SQ_MAXIMUM_HIT_N_RUNS,
+      SQ_ALLOW_REGISTER,
     },
   } = getConfig();
 
@@ -609,10 +610,18 @@ const Torrent = ({ token, torrent = {}, userId, userRole, uid, userStats }) => {
             >
               {getLocaleString("torrDownload")} .torrent
             </Button>
+          ) : SQ_ALLOW_REGISTER === "public" ? (
+              <Button
+                  as="a"
+                  href={`${SQ_API_URL}/torrent/download/${torrent.infoHash}/publicUserUID`}
+                  target="_blank"
+              >
+                {getLocaleString("torrDownload")} .torrent
+              </Button>
           ) : (
-            <Link href="/login" passHref>
-              <Button as="a">{getLocaleString("torrLogInDownload")}</Button>
-            </Link>
+              <Link href="/login" passHref>
+                <Button as="a">{getLocaleString("torrLogInDownload")}</Button>
+              </Link>
           )}
         </Box>
       </Box>

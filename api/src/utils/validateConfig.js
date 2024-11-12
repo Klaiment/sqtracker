@@ -12,7 +12,7 @@ const configSchema = yup
         SQ_SITE_DESCRIPTION: yup.string().min(1).max(80).required(),
         SQ_ALLOW_REGISTER: yup
           .string()
-          .oneOf(["open", "invite", "closed"])
+          .oneOf(["open", "invite", "closed", "public"])
           .required(),
         SQ_ALLOW_ANONYMOUS_UPLOADS: yup.boolean().required(),
         SQ_MINIMUM_RATIO: yup.number().min(-1).required(),
